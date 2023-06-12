@@ -12,10 +12,10 @@ BlogPost.init({
     authorId: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        references: {
+        /*references: {
             model: 'user',
             key: 'id'
-        }
+        }*/
     },
     title: {
         type: DataTypes.STRING,

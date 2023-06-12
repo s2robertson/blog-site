@@ -6,11 +6,8 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/', (req, res) => {
-    res.json({
-        data: 'Hello World'
-    });
-})
+const controllers = require('./controllers');
+app.use(controllers);
 
 sequelize.sync().then(() => {
     app.listen(PORT, () => {

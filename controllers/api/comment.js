@@ -1,5 +1,6 @@
 const express = require('express');
 const { Comment } = require('../../models');
+const { withApiAuth } = require('../../util/auth');
 
 const router = express.Router();
 
@@ -16,16 +17,19 @@ router.get('/', async (req, res) => {
     }
 })
 
-router.post('/', async (req, res) => {
+router.post('/', withApiAuth, async (req, res) => {
     try {
-        const comment = await Comment.create(req.body);
+        const comment = await Comment.create({
+            ...req.body,
+            userId: req.session.userId
+        });
         res.status(201).json(comment);
     } catch (err) {
         res.status(500).json(err);
     }
 })
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', withApiAuth, async (req, res) => {
     try {
         const rowsUpdated = await Comment.update(req.body, {
             where: {
@@ -38,7 +42,7 @@ router.put('/:id', async (req, res) => {
     }
 })
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', withApiAuth, async (req, res) => {
     try {
         const rowsDeleted = await Comment.destroy({
             where: {

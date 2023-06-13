@@ -1,5 +1,6 @@
 const express = require('express');
 const { User, BlogPost, Comment } = require('../models');
+const { withRouteAuth } = require('../util/auth');
 
 const router = express.Router();
 
@@ -24,6 +25,10 @@ router.get('/login', (req, res) => {
         return res.redirect('/');
     }
     res.render('login', { userId: req.session.userId });
+})
+
+router.get('/blogPost/new', withRouteAuth, (req, res) => {
+    res.render('newBlogPost', { userId: req.session.userId });
 })
 
 router.get('/blogPost/:id', async (req, res) => {

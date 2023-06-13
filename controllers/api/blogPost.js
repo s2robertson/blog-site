@@ -1,5 +1,6 @@
 const express = require('express');
 const { BlogPost } = require('../../models');
+const { withApiAuth } = require('../../util/auth');
 
 const router = express.Router();
 
@@ -12,16 +13,20 @@ router.get('/', async (req, res) => {
     }
 })
 
-router.post('/', async (req, res) => {
+router.post('/', withApiAuth, async (req, res) => {
     try {
-        const post = await BlogPost.create(req.body);
+        const post = await BlogPost.create({
+            ...req.body,
+            userId: req.session.userId
+        });
         res.status(201).json(post);
     } catch (err) {
-        res.status(500).json(err);
+        console.log(err);
+        res.status(500).json({ msg: 'Saving blog post failed' });
     }
 })
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', withApiAuth, async (req, res) => {
     try {
         const rowsUpdated = await BlogPost.update(req.body, {
             where: {
@@ -34,7 +39,7 @@ router.put('/:id', async (req, res) => {
     }
 })
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', withApiAuth, async (req, res) => {
     try {
         const rowsDeleted = await BlogPost.destroy({
             where: {

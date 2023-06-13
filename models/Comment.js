@@ -9,7 +9,7 @@ Comment.init({
         primaryKey: true,
         autoIncrement: true
     },
-    commenterId: {
+    userId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         /*references: {

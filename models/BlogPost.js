@@ -9,7 +9,7 @@ BlogPost.init({
         primaryKey: true,
         autoIncrement: true
     },
-    authorId: {
+    userId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         /*references: {

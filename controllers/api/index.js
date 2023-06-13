@@ -5,7 +5,7 @@ const userRoutes = require('./user');
 router.use('/user', userRoutes);
 
 const postRoutes = require('./blogPost');
-router.use('/blogpost', postRoutes);
+router.use('/blogPost', postRoutes);
 
 const commentRoutes = require('./comment');
 router.use('/comment', commentRoutes);

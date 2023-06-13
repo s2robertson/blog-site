@@ -1,7 +1,7 @@
-<div class="list-group list-group-flush">
+<ol class="list-group list-group-flush">
     {{#each blogPosts}}
-        <div class="list-group-item">
-            {{> blogPostDetails linkPost=true}}
-        </div>
+        <li class="list-group-item position-relative">
+            {{> blogPostShort}}
+        </li>
     {{/each}}
-</div>
+</ol>

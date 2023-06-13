@@ -1,6 +1,8 @@
 {{#with blogPost}}
     <section class="border-bottom border-secondary pb-3">
-        {{> blogPostDetails}}
+        <h2>{{title}}</h2>
+        <p>By {{User.username}} on {{format_date createdAt}}</p>
+        <p>{{text}}</p>
     </section>
 {{/with}}
 <section class="pt-3">

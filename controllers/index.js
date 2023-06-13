@@ -4,10 +4,7 @@ const router = express.Router();
 const apiRoutes = require('./api/');
 router.use('/api', apiRoutes);
 
-router.get('/', (req, res) => {
-    res.json({
-        data: 'Hello World'
-    });
-})
+const pageRoutes = require('./pageRoutes');
+router.use(pageRoutes);
 
 module.exports = router;

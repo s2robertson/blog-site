@@ -1,0 +1,8 @@
+<a href="/blogPost/new" class="btn btn-secondary fs-4 px-5 py-2 mb-3">New Blog Post</a>
+<ol class="list-group list-group-flush">
+    {{#each blogPosts}}
+        <li class="list-group-item">
+            {{> blogPostShort}}
+        </li>
+    {{/each}}
+</ol>

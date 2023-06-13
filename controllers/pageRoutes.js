@@ -53,4 +53,22 @@ router.get('/blogPost/:id', async (req, res) => {
     }
 })
 
+router.get('/dashboard', async (req, res) => {
+    try {
+        const blogPosts = (await BlogPost.findAll({
+            where: { userId: req.session.userId },
+            include: {
+                model: User,
+                attributes: ['id', 'username']
+            },
+            order: [['createdAt', 'DESC']]
+        })).map(blogPost => blogPost.get({ plain: true }));
+
+        res.render('dashboard', { blogPosts, userId: req.session.userId });
+    } catch (err) {
+        console.log(err);
+        res.redirect('/');
+    }
+})
+
 module.exports = router;

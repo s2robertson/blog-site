@@ -37,7 +37,8 @@ router.get('/blogPost/:id', async (req, res) => {
                 include: {
                     model: User,
                     attributes: ['id', 'username']
-                }
+                },
+                order: ['createdAt']
             }]
         });
         if (!blogPostData) {

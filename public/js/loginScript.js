@@ -22,6 +22,7 @@ loginFormButton.addEventListener('click', async (e) => {
         loginFormFeedback.textContent = errorMsg;
         return;
     }
+    loginFormFeedback.textContent = '';
 
     try {
         loginFormButton.setAttribute('disabled', true);

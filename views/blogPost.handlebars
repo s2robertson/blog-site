@@ -1,9 +1,9 @@
- {{#with blogPost}}
+{{#with blogPost}}
     <section class="border-bottom border-secondary pb-3">
         {{> blogPostDetails}}
     </section>
- {{/with}}
- <section class="pt-3">
+{{/with}}
+<section class="pt-3">
     <h2>Comments:</h2>
     <div class="list-group list-group-flush">
         {{#each blogPost.Comments}}
@@ -12,5 +12,5 @@
                 <p>{{text}}</p>
             </div>
         {{/each}}
-    </section>
- </div>
+    </div>
+</section>

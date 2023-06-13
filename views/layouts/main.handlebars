@@ -12,12 +12,13 @@
             <h1 class="flex-grow-1">My Tech Blog</h1>
             <a href="/" class="btn btn-secondary">Home</a>
             <a href="/dashboard" class="btn btn-secondary">Dashboard</a>
-            <a id="logInButton" href="/login" class="btn btn-secondary" style="display: {{#if loggedIn}}hidden{{else}}block{{/if}}">Log In</a>
-            <button id="logOutButton" class="btn btn-secondary" style="display: {{#if loggedIn}}block{{else}}none{{/if}};">Log Out</button>
+            <a id="logInButton" href="/login" class="btn btn-secondary" style="display: {{#if userId}}none{{else}}block{{/if}}">Log In</a>
+            <button id="logOutButton" type="button" class="btn btn-secondary" style="display: {{#if userId}}block{{else}}none{{/if}};">Log Out</button>
         </div>
     </header>
     <main class="container mt-4">
         {{{ body }}}
     </main>
+    <script src="/js/logoutScript.js"></script>
 </body>
 </html>

@@ -3,7 +3,11 @@ const sequelize = require('../config/connection');
 const bcrypt = require('bcrypt');
 const SALT_ROUNDS = 10;
 
-class User extends Model {}
+class User extends Model {
+    comparePassword(input) {
+        return bcrypt.compare(input, this.password);
+    }
+}
 
 User.init({
     id: {

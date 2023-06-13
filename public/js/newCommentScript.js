@@ -40,6 +40,7 @@ newCommentButton.addEventListener('click', async (e) => {
         } else {
             const comment = await fetchResult.json();
             buildCommentListItem(comment);
+            newCommentTextarea.value = '';
         }
     } catch (err) {
         newCommentFeedback.textContent = 'Saving comment failed';

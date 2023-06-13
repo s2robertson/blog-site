@@ -1,9 +1,7 @@
 <div class="list-group list-group-flush">
     {{#each blogPosts}}
         <div class="list-group-item">
-            <h2>{{title}}</h2>
-            <p>By {{author.username}} on {{format_date createdAt}}</p>
-            <p>{{text}}</p>
+            {{> blogPostDetails}}
         </div>
     {{/each}}
 </div>

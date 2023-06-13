@@ -35,6 +35,11 @@ User.init({
         },
         async beforeUpdate(user) {
             user.password = await bcrypt.hash(user.password, SALT_ROUNDS);
+        },
+        async beforeBulkCreate(users) {
+            const promises = users.map(user => bcrypt.hash(user.password, SALT_ROUNDS));
+            const passwords = await Promise.all(promises);
+            passwords.forEach((password, i) => users[i].password = password);
         }
     },
     timestamps: false,

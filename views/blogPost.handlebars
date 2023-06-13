@@ -5,12 +5,13 @@
 {{/with}}
 <section class="pt-3">
     <h2>Comments:</h2>
-    <div class="list-group list-group-flush">
+    <ol class="list-group list-group-flush">
         {{#each blogPost.Comments}}
-            <div class="list-group-item">
-                <h3 class="fs-5">#{{@index}}. By {{User.username}} on {{format_date createdAt}}</h3>
+            <li class="list-group-item">
+                <h3 class="fs-5">#{{inc @index}}. By {{User.username}} on {{format_date createdAt}}</h3>
                 <p>{{text}}</p>
-            </div>
+            </li>
         {{/each}}
-    </div>
+    </ol>
+    
 </section>

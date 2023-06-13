@@ -37,6 +37,8 @@ loginFormButton.addEventListener('click', async (e) => {
             const { msg } = await result.json();
             loginFormFeedback.textContent = msg;
         }
+    } catch (err) {
+        loginFormButton.textContent = 'Login failed';
     } finally {
         loginFormButton.removeAttribute('disabled');
     }
@@ -71,6 +73,8 @@ registerFormButton.addEventListener('click', async (e) => {
             const { msg } = await result.json();
             registerFormFeedback.textContent = msg;
         }
+    } catch (err) {
+        registerFormFeedback.textContent = 'Registration failed';
     } finally {
         registerFormButton.removeAttribute('disabled');
     }

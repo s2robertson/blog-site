@@ -12,6 +12,11 @@
     </div>
     <p id="newBlogPostFeedback" class="form-text"></p>
 </form>
-<input id="submitPath" type="hidden" value="{{#if blogPost}}/api/blogPost/{{blogPost.id}}{{else}}/api/blogPost/{{/if}}">
+{{#if blogPost}}
+    <div class="row">
+        <button id="deleteButton" type="button" class="btn btn-danger mt-3">Delete this post</button>
+    </div>
+{{/if}}
+<input id="blogPostId" type="hidden" value="{{#if blogPost}}{{blogPost.id}}{{/if}}">
 <input id="submitMethod" type="hidden" value="{{#if blogPost}}PUT{{else}}POST{{/if}}">
 <script src="/js/editBlogPostScript.js"></script>

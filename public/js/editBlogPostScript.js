@@ -3,8 +3,16 @@ const newBlogPostTextInput = document.getElementById('newBlogPostText');
 const newBlogPostSubmitButton = document.getElementById('newBlogPostSubmit');
 const newBlogPostFeedbackEl = document.getElementById('newBlogPostFeedback');
 
-const submitPathEl = document.getElementById('submitPath');
+const blogPostIdEl = document.getElementById('blogPostId');
 const submitMethodEl = document.getElementById('submitMethod');
+
+function getSubmitPath() {
+    let res = '/api/blogPost';
+    if (blogPostIdEl.value) {
+        res += '/' + blogPostIdEl.value;
+    }
+    return res;
+}
 
 newBlogPostSubmitButton.addEventListener('click', async (e) => {
     e.preventDefault();
@@ -25,7 +33,7 @@ newBlogPostSubmitButton.addEventListener('click', async (e) => {
 
     try {
         newBlogPostSubmitButton.setAttribute('disabled', true);
-        const result = await fetch(submitPathEl.value, {
+        const result = await fetch(getSubmitPath(), {
             method: submitMethodEl.value,
             body: JSON.stringify({ title, text }),
             headers: { 'Content-Type': 'application/json' }
@@ -40,5 +48,20 @@ newBlogPostSubmitButton.addEventListener('click', async (e) => {
         newBlogPostFeedbackEl.textContent = 'Saving blog post failed';
     } finally {
         newBlogPostSubmitButton.removeAttribute('disabled');
+    }
+});
+
+const deleteButton = document.getElementById('deleteButton');
+deleteButton.addEventListener('click', async () => {
+    const confirmed = confirm('Are you sure you want to delete this post?  This cannot be undone!');
+    if (confirmed) {
+        try {
+            const result = await fetch(getSubmitPath(), {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' }
+            });
+        } finally {
+            location.assign('/dashboard');
+        }
     }
 })

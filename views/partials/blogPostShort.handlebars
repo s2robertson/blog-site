@@ -1,3 +1,7 @@
 <h2>{{title}}</h2>
 <p>By {{User.username}} on {{format_date createdAt}}</p>
-<p><a href="/blogPost/{{id}}">View this post</a></p>
+<p><a href="/blogPost/{{id}}" class="btn btn-secondary">View this post</a>
+    {{~#if (eq @root.userId User.id)~}}
+        <a href="/blogPost/{{id}}/edit" class="btn btn-secondary ms-3">Edit this post</a>
+    {{~/if~}}
+</p>

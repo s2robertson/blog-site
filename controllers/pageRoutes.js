@@ -61,6 +61,30 @@ router.get('/blogPost/:id', async (req, res) => {
     }
 })
 
+router.get('/blogPost/:id/edit', withRouteAuth, async (req, res) => {
+    try {
+        const blogPostData = await BlogPost.findByPk(req.params.id, {
+            include: {
+                model: User,
+                attributes: ['id', 'username']
+            }
+        });
+        if (!blogPostData || blogPostData.userId != req.session.userId) {
+            return res.redirect('/dashboard');
+        }
+
+        const blogPost = blogPostData.get({ plain: true });
+        res.render('editBlogPost', {
+            blogPost,
+            userId: req.session.userId,
+            pageTitle: 'Edit Blog Post'
+        });
+    } catch (err) {
+        console.log(err);
+        res.redirect('/dashboard');
+    }
+})
+
 router.get('/dashboard', async (req, res) => {
     try {
         const blogPosts = (await BlogPost.findAll({

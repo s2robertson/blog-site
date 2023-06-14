@@ -28,7 +28,10 @@ router.get('/login', (req, res) => {
 })
 
 router.get('/blogPost/new', withRouteAuth, (req, res) => {
-    res.render('newBlogPost', { userId: req.session.userId });
+    res.render('editBlogPost', { 
+        userId: req.session.userId,
+        pageTitle: 'New Blog Post'
+    });
 })
 
 router.get('/blogPost/:id', async (req, res) => {

@@ -1,0 +1,17 @@
+<h2>{{pageTitle}}</h2>
+<form class="mt-3">
+    <div class="row mb-3">
+        <label for="newBlogPostTitle" class="form-label">Title:</label>
+        <input id="newBlogPostTitle" type="text" class="form-control" {{#if blogPost}}value="{{blogPost.title}}"{{/if}}>
+    </div>
+    <div class="row mb-3">
+        <textarea id="newBlogPostText" class="form-control" rows="20">{{#if blogPost}}{{blogPost.text}}{{/if}}</textarea>
+    </div>
+    <div class="row">
+        <button id="newBlogPostSubmit" type="submit" class="btn btn-secondary">Submit</button>
+    </div>
+    <p id="newBlogPostFeedback" class="form-text"></p>
+</form>
+<input id="submitPath" type="hidden" value="{{#if blogPost}}/api/blogPost/{{blogPost.id}}{{else}}/api/blogPost/{{/if}}">
+<input id="submitMethod" type="hidden" value="{{#if blogPost}}PUT{{else}}POST{{/if}}">
+<script src="/js/editBlogPostScript.js"></script>

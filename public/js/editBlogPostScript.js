@@ -3,6 +3,9 @@ const newBlogPostTextInput = document.getElementById('newBlogPostText');
 const newBlogPostSubmitButton = document.getElementById('newBlogPostSubmit');
 const newBlogPostFeedbackEl = document.getElementById('newBlogPostFeedback');
 
+const submitPathEl = document.getElementById('submitPath');
+const submitMethodEl = document.getElementById('submitMethod');
+
 newBlogPostSubmitButton.addEventListener('click', async (e) => {
     e.preventDefault();
     const title = newBlogPostTitleInput.value.trim();
@@ -22,8 +25,8 @@ newBlogPostSubmitButton.addEventListener('click', async (e) => {
 
     try {
         newBlogPostSubmitButton.setAttribute('disabled', true);
-        const result = await fetch('/api/blogPost', {
-            method: 'POST',
+        const result = await fetch(submitPathEl.value, {
+            method: submitMethodEl.value,
             body: JSON.stringify({ title, text }),
             headers: { 'Content-Type': 'application/json' }
         });

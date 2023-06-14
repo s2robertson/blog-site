@@ -10,7 +10,7 @@ function buildCommentListItem(comment) {
     const title = document.createElement('h3');
     title.classList.add('fs-5');
     const createdAt = comment.createdAt ? new Date(comment.createdAt) : new Date();
-    title.textContent = `#${commentsList.children.length}. By ${usernameInput.value} on ${createdAt.toLocaleString()}`;
+    title.textContent = `#${commentsList.children.length + 1}. By ${usernameInput.value} on ${createdAt.toLocaleString()}`;
     const text = document.createElement('p');
     text.textContent = comment.text;
 

@@ -54,7 +54,11 @@ router.get('/blogPost/:id', async (req, res) => {
         }
         
         const blogPost = blogPostData.get({ plain: true });
-        res.render('blogPost', { blogPost, userId: req.session.userId });
+        res.render('blogPost', { 
+            blogPost, 
+            userId: req.session.userId ,
+            username: req.session.username
+        });
     } catch (err) {
         console.log(err);
         res.redirect('/');

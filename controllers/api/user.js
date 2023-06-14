@@ -30,6 +30,7 @@ router.post('/login', async (req, res) => {
         }
 
         req.session.userId = user.id;
+        req.session.username = user.username;
         res.json({ msg: 'Login succeeded' });
     } catch (err) {
         res.status(500).json(err);

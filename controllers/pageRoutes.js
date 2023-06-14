@@ -4,6 +4,7 @@ const { withRouteAuth } = require('../util/auth');
 
 const router = express.Router();
 
+// Home Page
 router.get('/', async (req, res) => {
     try {
         const blogPosts = (await BlogPost.findAll({
@@ -21,12 +22,14 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/login', (req, res) => {
+    // if the user is already logged in, return to the home page
     if (req.session?.userId) {
         return res.redirect('/');
     }
     res.render('login', { userId: req.session.userId });
 })
 
+// create a new blog post (needs to come before /blogPost/:id)
 router.get('/blogPost/new', withRouteAuth, (req, res) => {
     res.render('editBlogPost', { 
         userId: req.session.userId,
@@ -73,6 +76,7 @@ router.get('/blogPost/:id/edit', withRouteAuth, async (req, res) => {
                 attributes: ['id', 'username']
             }
         });
+        // if the user tried to access an invalid id, or a blog post owned by someone else
         if (!blogPostData || blogPostData.userId != req.session.userId) {
             return res.redirect('/dashboard');
         }

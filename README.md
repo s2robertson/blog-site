@@ -20,6 +20,8 @@ existing one.  If you are logged in, you gain the ability create new comments on
 user dashboard (linked in the top right) that displays a list of your blog posts, and contains a link to 
 edit them.  It is also possible to delete posts entirely from the edit screen.
 
+[Try it out on Heroku](https://s2robertson-blog-site.herokuapp.com/)
+
 ## Credits
 In addition to the packages listed in `package.json`, the blog site uses [Bootstrap](https://getbootstrap.com/)
 for styling.  Sample data was generated with [https://loremipsum.io/](https://loremipsum.io/).

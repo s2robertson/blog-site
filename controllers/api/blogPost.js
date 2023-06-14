@@ -4,14 +4,14 @@ const { withApiAuth } = require('../../util/auth');
 
 const router = express.Router();
 
-router.get('/', async (req, res) => {
+/*router.get('/', async (req, res) => {
     try {
         const posts = await BlogPost.findAll();
         res.json(posts);
     } catch (err) {
         res.status(500).json(err);
     }
-})
+})*/
 
 router.post('/', withApiAuth, async (req, res) => {
     try {

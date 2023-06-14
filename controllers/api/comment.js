@@ -4,7 +4,7 @@ const { withApiAuth } = require('../../util/auth');
 
 const router = express.Router();
 
-router.get('/', async (req, res) => {
+/*router.get('/', async (req, res) => {
     try {
         const where = {};
         if (req.query.blogPostId) {
@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
     } catch (err) {
         res.status(500).json(err);
     }
-})
+})*/
 
 router.post('/', withApiAuth, async (req, res) => {
     try {
@@ -29,7 +29,7 @@ router.post('/', withApiAuth, async (req, res) => {
     }
 })
 
-router.put('/:id', withApiAuth, async (req, res) => {
+/*router.put('/:id', withApiAuth, async (req, res) => {
     try {
         const rowsUpdated = await Comment.update(req.body, {
             where: {
@@ -53,6 +53,6 @@ router.delete('/:id', withApiAuth, async (req, res) => {
     } catch (err) {
         res.status(500).json(err);
     }
-})
+})*/
 
 module.exports = router;

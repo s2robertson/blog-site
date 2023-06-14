@@ -30,7 +30,8 @@ router.put('/:id', withApiAuth, async (req, res) => {
     try {
         const rowsUpdated = await BlogPost.update(req.body, {
             where: {
-                id: req.params.id
+                id: req.params.id,
+                userId: req.session.userId
             }
         });
         res.json(rowsUpdated);
@@ -43,7 +44,8 @@ router.delete('/:id', withApiAuth, async (req, res) => {
     try {
         const rowsDeleted = await BlogPost.destroy({
             where: {
-                id: req.params.id
+                id: req.params.id,
+                userId: req.session.userId
             }
         });
         res.json(rowsDeleted);
